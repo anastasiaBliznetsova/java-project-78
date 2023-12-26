@@ -2,8 +2,6 @@ package hexlet.code.schemas;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-import java.util.function.Predicate;
 
 public class StringSchema {
     private Boolean isRequired = false;
@@ -13,12 +11,12 @@ public class StringSchema {
     private String substring = "";
     private int minValue;
     private boolean haveMinLength = false;
-    public boolean isValid(Object stringToChecked) {
-        this.stringToChecked = stringToChecked;
-        if (stringToChecked == null || stringToChecked.equals("")) {
+    public boolean isValid(Object string) {
+        this.stringToChecked = string;
+        if (string == null || string.equals("")) {
             return !isRequired;
         }
-        if (stringToChecked instanceof String) {
+        if (string instanceof String) {
             if (!substring.isEmpty()) {
                 contains();
             } else if (haveMinLength) {
@@ -34,9 +32,9 @@ public class StringSchema {
         return this;
     }
 
-    public StringSchema minLength(int minValue) {
-        if (minValue >= 0) {
-            this.minValue = minValue;
+    public StringSchema minLength(int value) {
+        if (value >= 0) {
+            this.minValue = value;
             haveMinLength = true;
             return this;
         }
@@ -44,19 +42,19 @@ public class StringSchema {
         return this;
     }
     public void minLength() {
-        if(stringToChecked.toString().length() > minValue) {
+        if (stringToChecked.toString().length() > minValue) {
             statusCheck = false;
         }
         mapCheck.put("minLength", statusCheck);
     }
 
-    public StringSchema contains(String substring) {
-        this.substring = substring;
+    public StringSchema contains(String newSubstring) {
+        this.substring = newSubstring;
         return this;
     }
 
     public void contains() {
-        if(!(stringToChecked.toString().contains(substring))) {
+        if (!(stringToChecked.toString().contains(substring))) {
             statusCheck = false;
         }
         mapCheck.put("contains", statusCheck);

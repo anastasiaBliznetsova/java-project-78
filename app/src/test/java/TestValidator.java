@@ -3,7 +3,7 @@ import hexlet.code.schemas.StringSchema;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class testValidator {
+public class TestValidator {
     Validator v = new Validator();
     StringSchema schema = v.string();
 
