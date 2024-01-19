@@ -30,11 +30,13 @@ public class TestValidator {
     @Test
     void testMapSchemaShapeTwo() {
         schemas.put("name", vSchema.string().required());
+        schemas.put("gender", vSchema.string().required());
         schemas.put("age", vSchema.number().positive());
         schemaMap.shape(schemas);
 
         Map<String, Object> human2 = new HashMap<>();
         human2.put("name", "Maya");
+        human2.put("gender", "male");
         human2.put("age", null);
         assertThat(schemaMap.isValid(human2)).isEqualTo(true);
     }
@@ -42,11 +44,13 @@ public class TestValidator {
     @Test
     void testMapSchemaShapeThree() {
         schemas.put("name", vSchema.string().required());
+        schemas.put("gender", vSchema.string().required());
         schemas.put("age", vSchema.number().positive());
         schemaMap.shape(schemas);
 
         Map<String, Object> human3 = new HashMap<>();
-        human3.put("name", "");
+        human3.put("name", "Maya");
+        human3.put("gender", null);
         human3.put("age", null);
         assertThat(schemaMap.isValid(human3)).isEqualTo(false);
     }
