@@ -12,11 +12,11 @@ public class NumberSchema extends BaseSchema {
                 }
         );
     }
-    public NumberSchema required() {
+    public final NumberSchema required() {
         addCheck("required", Objects::nonNull);
         return this;
     }
-    public NumberSchema positive() {
+    public final NumberSchema positive() {
         addCheck("positive",
                 value -> {
                 if (value instanceof Integer) {
@@ -27,7 +27,7 @@ public class NumberSchema extends BaseSchema {
         return this;
     }
 
-    public NumberSchema range(int minValue, int maxValue) {
+    public final NumberSchema range(int minValue, int maxValue) {
         addCheck("range",
                 value -> {
                     if (value instanceof Integer) {

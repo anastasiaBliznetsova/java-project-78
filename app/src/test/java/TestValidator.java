@@ -10,11 +10,11 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestValidator {
-    Validator vSchema = new Validator();
-    StringSchema schemaString = vSchema.string();
-    NumberSchema schemaNumber = vSchema.number();
-    MapSchema schemaMap = vSchema.map();
-    Map<String, BaseSchema> schemas = new HashMap<>();
+    private final Validator vSchema = new Validator();
+    private final StringSchema schemaString = vSchema.string();
+    private final NumberSchema schemaNumber = vSchema.number();
+    private final MapSchema schemaMap = vSchema.map();
+    private final Map<String, BaseSchema> schemas = new HashMap<>();
 
     @Test
     void testMapSchemaShapeOne() {

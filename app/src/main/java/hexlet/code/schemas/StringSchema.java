@@ -13,12 +13,12 @@ public class StringSchema extends BaseSchema {
         );
     }
 
-    public StringSchema required() {
+    public final StringSchema required() {
         addCheck("required", string -> (string != null && !string.equals("")));
         return this;
     }
 
-    public StringSchema minLength(int value) {
+    public final StringSchema minLength(int value) {
         addCheck("minLength",
                 string -> {
                     if (string instanceof String) {
@@ -29,7 +29,7 @@ public class StringSchema extends BaseSchema {
         return this;
     }
 
-    public StringSchema contains(String substring) {
+    public final StringSchema contains(String substring) {
         addCheck("contains",
                 string -> {
                     if (string instanceof String) {

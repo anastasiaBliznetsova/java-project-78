@@ -11,7 +11,7 @@ public class BaseSchema {
     public final boolean isValid(Object object) {
         return checks.values().stream().allMatch(check -> check.test(object));
     }
-    protected void addCheck(String nameCheck, Predicate<Object> value) {
+    protected final void addCheck(String nameCheck, Predicate<Object> value) {
         checks.put(nameCheck, value);
     }
 

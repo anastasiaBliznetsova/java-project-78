@@ -13,11 +13,11 @@ public class MapSchema extends BaseSchema {
                 }
         );
     }
-    public MapSchema required() {
+    public final MapSchema required() {
         addCheck("required", Objects::nonNull);
         return this;
     }
-    public MapSchema sizeof(int value) {
+    public final MapSchema sizeof(int value) {
         addCheck("sizeof",
                 map -> {
                     if (map instanceof Map<?, ?>) {
@@ -28,7 +28,7 @@ public class MapSchema extends BaseSchema {
         return this;
     }
 
-    public MapSchema shape(Map<String, BaseSchema> mapSchemas) {
+    public final MapSchema shape(Map<String, BaseSchema> mapSchemas) {
         addCheck("shape", map -> mapSchemas.entrySet().stream()
                 .allMatch(keyAndValue -> keyAndValue.getValue()
                         .isValid(((Map<?, ?>) map).get(keyAndValue.getKey()))));
