@@ -12,7 +12,7 @@ public class NumberSchema extends BaseSchema {
     }
     public final NumberSchema positive() {
         addCheck("positive",
-                value -> value == null || (int) value > 0);
+                value -> value == null || (value instanceof Integer && (int) value > 0));
         return this;
     }
 
