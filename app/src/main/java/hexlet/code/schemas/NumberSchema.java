@@ -4,13 +4,7 @@ import java.util.Objects;
 public class NumberSchema extends BaseSchema {
     public NumberSchema() {
         addCheck("instanceof",
-                value -> {
-                    if (value != null) {
-                        return value instanceof Integer;
-                    }
-                    return true;
-                }
-        );
+                value -> value == null || value instanceof Integer);
     }
     public final NumberSchema required() {
         addCheck("required", Objects::nonNull);
@@ -18,23 +12,13 @@ public class NumberSchema extends BaseSchema {
     }
     public final NumberSchema positive() {
         addCheck("positive",
-                value -> {
-                if (value instanceof Integer) {
-                    return (int) value > 0;
-                }
-                return true;
-                });
+                value -> value == null || (int) value > 0);
         return this;
     }
 
     public final NumberSchema range(int minValue, int maxValue) {
         addCheck("range",
-                value -> {
-                    if (value instanceof Integer) {
-                        return (int) value <= maxValue && (int) value >= minValue;
-                    }
-                    return true;
-                });
+                value -> value != null && (int) value <= maxValue && (int) value >= minValue);
         return this;
     }
 

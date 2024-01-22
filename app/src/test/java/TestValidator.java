@@ -105,6 +105,7 @@ public class TestValidator {
     @Test
     void testNumberSchemaRange() {
         schemaNumber.required().range(5, 10);
+        assertThat(schemaNumber.isValid(null)).isEqualTo(false);
         assertThat(schemaNumber.isValid(5)).isEqualTo(true);
         assertThat(schemaNumber.isValid(10)).isEqualTo(true);
         assertThat(schemaNumber.isValid(4)).isEqualTo(false);
@@ -129,6 +130,8 @@ public class TestValidator {
 
     @Test
     void testStringSchemaContains() {
+        assertThat(schemaString.contains("wh").isValid(null))
+                .isEqualTo(false);
         schemaString.required();
         assertThat(schemaString.contains("wh").isValid("what does the fox say"))
                 .isEqualTo(true);
@@ -142,7 +145,11 @@ public class TestValidator {
 
     @Test
     void testStringSchemaMinLength() {
+        assertThat(schemaString.minLength(4).isValid(null))
+                .isEqualTo(false);
         schemaString.required();
+        assertThat(schemaString.minLength(4).isValid(null))
+                .isEqualTo(false);
         assertThat(schemaString.minLength(4).isValid("hexlet"))
                 .isEqualTo(true);
         assertThat(schemaString.minLength(21).isValid("what does the fox say"))

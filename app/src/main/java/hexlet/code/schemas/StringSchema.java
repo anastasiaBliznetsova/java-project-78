@@ -4,13 +4,7 @@ public class StringSchema extends BaseSchema {
 
     public StringSchema() {
         addCheck("instanceof",
-                value -> {
-                    if (value != null) {
-                        return value instanceof String;
-                    }
-                    return true;
-                }
-        );
+                value -> value == null || value instanceof String);
     }
 
     public final StringSchema required() {
@@ -20,23 +14,13 @@ public class StringSchema extends BaseSchema {
 
     public final StringSchema minLength(int value) {
         addCheck("minLength",
-                string -> {
-                    if (string instanceof String) {
-                        return ((String) string).length() >= value;
-                    }
-                    return true;
-                });
+                string -> string != null && ((String) string).length() >= value);
         return this;
     }
 
     public final StringSchema contains(String substring) {
         addCheck("contains",
-                string -> {
-                    if (string instanceof String) {
-                        return string.toString().contains(substring);
-                    }
-                    return true;
-                });
+                string -> substring != null && string != null && string.toString().contains(substring));
         return this;
     }
 
